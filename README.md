@@ -38,7 +38,7 @@ php artisan migrate
 php artisan serve
 ```
 
-The app runs at `http://127.0.0.1:8000`. The API is intentionally unauthenticated for a short portfolio sandbox. Do not use it for real personal or customer data.
+The app runs at `http://127.0.0.1:8000`. The API is intentionally unauthenticated for a short portfolio sandbox.  All records are shared; there is no per-user data separation. Do not use it for real personal or customer data.
 
 ## API
 

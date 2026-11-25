@@ -17,7 +17,7 @@ class ItemController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'sku' => 'required|string|max:60',
+            'sku' => 'required|string|max:60|unique:items,sku',
             'name' => 'required|string|max:180',
             'quantity' => 'sometimes|integer|min:0',
             'reorder_level' => 'sometimes|integer|min:0',
@@ -35,7 +35,7 @@ class ItemController extends Controller
 
     public function update(Request $request, Item $item): JsonResponse
     {
-        $data = $request->validate(['sku' => 'sometimes|string|max:60', 'name' => 'sometimes|string|max:180', 'quantity' => 'sometimes|integer|min:0', 'reorder_level' => 'sometimes|integer|min:0', 'unit_price' => 'sometimes|numeric|min:0']);
+        $data = $request->validate(['sku' => ['sometimes', 'string', 'max:60', \Illuminate\Validation\Rule::unique('items', 'sku')->ignore($item->id)], 'name' => 'sometimes|string|max:180', 'quantity' => 'sometimes|integer|min:0', 'reorder_level' => 'sometimes|integer|min:0', 'unit_price' => 'sometimes|numeric|min:0']);
         $item->update($data);
         return response()->json(['data' => $item->refresh()]);
     }

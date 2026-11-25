@@ -26,4 +26,11 @@ class ApiTest extends TestCase
     {
         $this->postJson('/api/items', [])->assertUnprocessable();
     }
+
+    public function test_duplicate_sku_is_rejected(): void
+    {
+        $p = ['sku' => 'KB-1', 'name' => 'Keyboard'];
+        $this->postJson('/api/items', $p)->assertCreated();
+        $this->postJson('/api/items', $p)->assertUnprocessable();
+    }
 }
