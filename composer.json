@@ -1,5 +1,5 @@
 {
-  "name": "hossamelkady/HElkady-stockroom-api",
+  "name": "hossamelkady/stockroom-api",
   "type": "project",
   "description": "Inventory tracking with SKU-level stock and reorder thresholds.",
   "keywords": ["laravel", "php", "rest-api", "portfolio"],
